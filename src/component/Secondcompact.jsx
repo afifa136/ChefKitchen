@@ -227,7 +227,7 @@ const Secondcompact = () => {
 
             {/* DISH GRID */}
 <div
-  className={`mt-10 grid grid-cols-1 sm:grid-cols-2 ${showOrderPanel ? "md:grid-cols-3" : "md:grid-cols-4"} gap-6 gap-y-12 pb-28`}
+  className={`mt-10 grid grid-cols-2 sm:grid-cols-2 ${showOrderPanel ? "md:grid-cols-3" : "md:grid-cols-4"} gap-6 gap-y-12 pb-28`}
 >              {filteredDishes.map(dish => {
                 const sizes = ["S","M","L"];
                 return (
