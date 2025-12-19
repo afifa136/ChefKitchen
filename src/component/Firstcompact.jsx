@@ -49,7 +49,7 @@ const Firstcompact = () => {
         {/* ✅ NAVIGATION BUTTON */}
         <button
           onClick={() => navigate("/menu")}
-          className="mt-3 sm:mt-4 md:mt-5 bg-orange-600 text-white font-bold px-4 sm:px-6 py-1 sm:py-2 rounded-lg shadow-lg hover:bg-orange-300 transition"
+          className="mt-3 sm:mt-4 md:mt-5 bg-[#FF9F43] text-white w-xs  font-bold px-4 sm:px-6 py-1 sm:py-2 rounded-lg shadow-lg hover:bg-orange-300 transition"
         >
           Explore Menu
         </button>

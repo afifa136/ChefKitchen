@@ -5,16 +5,10 @@ import dish2 from "../assets/dish2.svg";
 import dish3 from "../assets/dish3.svg";
 import dish4 from "../assets/dish4.svg";
 import dish5 from "../assets/dish5.svg";
-import logo from "../assets/logo.svg";
-import home from "../assets/home.svg";
-import offer from "../assets/offer.svg";
-import heart from "../assets/heart.svg";
-import mail from "../assets/mail.svg";
-import notificationIcon from "../assets/notification.svg";
-import logout from "../assets/logout.svg";
 
 import { Search, ShoppingCart, ChevronDown } from "lucide-react";
 import OrderPanel from "./OrderPanel";
+import Sidebaritem from "./Sidebaritem";
 
 const dishes = [
   { id: 1, name: "Healthy noodle with spinach leaf", oldPrice: 32, newPrice: 25, available: "22 Bowls available", image: dish1,category: "today",dine: ["Dine In", "Take Away"] },
@@ -39,13 +33,7 @@ const dishes = [
 
 ];
 
-const sidebarIcons = [
-  { key: "home", src: home },
-  { key: "offer", src: offer },
-  { key: "heart", src: heart },
-  { key: "mail", src: mail },
-  { key: "notification", src: notificationIcon },
-];
+
 
 const Secondcompact = () => {
   const [activeIcon, setActiveIcon] = useState("home");
@@ -60,6 +48,7 @@ const Secondcompact = () => {
   const [selectedSizes, setSelectedSizes] = useState({});
   const [addedDishes, setAddedDishes] = useState({});
   const [notification, setNotification] = useState("");
+  
 
   useEffect(() => {
     const t = setInterval(() => setDateTime(new Date()), 1000);
@@ -94,7 +83,7 @@ const Secondcompact = () => {
   const total = subtotal * (1 - discount);
 
   const filteredDishes = dishes.filter(d =>
-  d.category === activeCategory &&
+  (activeCategory === "all" || d.category === activeCategory) &&
   d.dine.includes(dineType) &&
   d.name.toLowerCase().includes(searchQuery.toLowerCase())
 );
@@ -109,10 +98,11 @@ const Secondcompact = () => {
   
 
   return (
-    <div className="bg-[#0F0F1A] min-h-screen">
-      <div className="max-w-[1600px] mx-auto flex relative">
+    <div className="bg-slate-900 min-h-screen">
+      <div className="max-w-[1600px] mx-auto flex relative pl-[72px] ">
+        <Sidebaritem/>
 
-        {/* LEFT SIDEBAR */}
+        {/* LEFT SIDEBAR
         <div className="hidden lg:flex w-22 bg-[#06060c] flex-col items-center py-6 border-r border-[#252535] relative">
           <img src={logo} alt="logo" className="w-12 h-12 mb-10" />
           <div className="flex flex-col items-center gap-6 flex-1 w-full">
@@ -140,13 +130,13 @@ const Secondcompact = () => {
           <div className="mt-auto pt-8">
             <img src={logout} alt="logout" className="w-6 h-6 opacity-70" />
           </div>
-        </div>
+        </div> */}
 
-        {/* MAIN CONTENT + ORDER PANEL */}
+         {/* MAIN CONTENT + ORDER PANEL */}
         <div className="flex-1 flex relative transition-all duration-300">
 
           {/* MAIN CONTENT */}
-          <main className={`flex-1 p-4 sm:p-6 lg:p-8 text-white transition-all duration-300 ${showOrderPanel ? "mr-[3px]" : "mr-0"}`}>
+          <main className={`flex-1 p-4 sm:p-6 lg:p-8 text-white transition-all duration-300 ${showOrderPanel ? "mr-[350px]" : "mr-0"}`}>
 
             {/* Notification */}
             {notification && (
@@ -173,7 +163,7 @@ const Secondcompact = () => {
                 </div>
                 <button
                   onClick={() => setShowOrderPanel(true)}
-                  className="relative w-12 h-12 rounded-xl bg-orange-500 flex items-center justify-center"
+                  className="relative w-12 h-12 rounded-xl bg-[#FF9F43] flex items-center justify-center"
                 >
                   <ShoppingCart className="text-black" />
                   {totalItems > 0 && (
@@ -188,14 +178,15 @@ const Secondcompact = () => {
             {/* CATEGORY TABS */}
             <div className="mt-6 border-b border-[#2A2A40] overflow-x-auto">
               <div className="flex gap-6 sm:gap-10 min-w-max">
-                {[{ key: "today", label: "Today Special" }, { key: "our", label: "Our Specials" }, { key: "south", label: "South Indian Special" }].map(tab => (
+                {[{ key: "all", label: "All" },
+                  { key: "today", label: "Today Special" }, { key: "our", label: "Our Specials" }, { key: "south", label: "South Indian Special" }].map(tab => (
                   <button
                     key={tab.key}
                     onClick={() => setActiveCategory(tab.key)}
-                    className={`relative pb-3 text-sm font-medium transition ${activeCategory === tab.key ? "text-orange-400" : "text-gray-400 hover:text-white"}`}
+                    className={`relative pb-3 text-sm font-medium transition ${activeCategory === tab.key ? "text-[#FF9F43]" : "text-gray-400 hover:text-white"}`}
                   >
                     {tab.label}
-                    {activeCategory === tab.key && <span className="absolute left-0 -bottom-[1px] w-full h-[2px] bg-orange-400 rounded-full" />}
+                    {activeCategory === tab.key && <span className="absolute left-0 -bottom-[1px] w-full h-[2px] bg-orange-500 rounded-full" />}
                   </button>
                 ))}
               </div>
@@ -231,7 +222,7 @@ const Secondcompact = () => {
 >              {filteredDishes.map(dish => {
                 const sizes = ["S","M","L"];
                 return (
-                  <div key={dish.id} className="bg-[#06060c] p-4 rounded-2xl">
+                  <div key={dish.id} className="bg-slate-950 p-4 rounded-2xl">
                     <img src={dish.image} alt={dish.name} className="w-24 h-24 mx-auto -mt-14 mb-4 border-3 border-gray-950 rounded-full" />
                     <h3 className="text-sm font-semibold">{dish.name}</h3>
                     <div className="text-xs mt-1">
@@ -245,7 +236,7 @@ const Secondcompact = () => {
                         <button
                           key={s}
                           onClick={() => setSelectedSizes(prev => ({ ...prev, [dish.id]: s }))}
-                          className={`w-8 h-8 text-xs rounded-md ${selectedSizes[dish.id] === s ? "bg-orange-500 text-black" : "bg-[#24243C] hover:bg-orange-400 hover:text-black"}`}
+                          className={`w-8 h-8 text-xs rounded-md ${selectedSizes[dish.id] === s ? "bg-[#FF9F43] text-black" : "bg-[#24243C] hover:bg-orange-500 hover:text-black"}`}
                         >
                           {s}
                         </button>
@@ -254,7 +245,7 @@ const Secondcompact = () => {
 
                     <button
                       onClick={() => addToOrder(dish, selectedSizes[dish.id])}
-                      className={`w-full mt-4 py-2 rounded-lg text-sm transition ${addedDishes[`${dish.id}-${selectedSizes[dish.id]}`] ? "bg-green-600 text-white" : "bg-orange-500 text-black hover:bg-orange-600"}`}
+                      className={`w-full mt-4 py-2 rounded-lg text-sm transition ${addedDishes[`${dish.id}-${selectedSizes[dish.id]}`] ? "bg-green-600 text-white" : "bg-[#FF9F43] text-black hover:bg-orange-500"}`}
                     >
                       {addedDishes[`${dish.id}-${selectedSizes[dish.id]}`] ? "Added" : "Add"}
                     </button>
@@ -344,7 +335,7 @@ const Secondcompact = () => {
               </div>
               {/* DINE TYPE INFO */}
 <div className="px-5 py-2 text-center">
-  <p className="text-orange-400 font-semibold text-sm">
+  <p className="text-[#FF9F43] font-semibold text-sm">
     {dineType}
   </p>
 </div>
@@ -352,7 +343,7 @@ const Secondcompact = () => {
               <div className="px-5 py-4">
                 <button
                   onClick={() => setShowReceipt(false)}
-                  className="w-full bg-orange-400 text-black py-2.5 rounded-xl font-semibold hover:bg-orange-500 transition"
+                  className="w-full bg-[#FF9F43] text-black py-2.5 rounded-xl font-semibold hover:bg-orange-500 transition"
                 >Close</button>
               </div>
             </div>
