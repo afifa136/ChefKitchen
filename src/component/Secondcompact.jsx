@@ -8,29 +8,198 @@ import dish5 from "../assets/dish5.svg";
 
 import { Search, ShoppingCart, ChevronDown } from "lucide-react";
 import OrderPanel from "./OrderPanel";
-import Sidebaritem from "./Sidebaritem";
 
 const dishes = [
-  { id: 1, name: "Healthy noodle with spinach leaf", oldPrice: 32, newPrice: 25, available: "22 Bowls available", image: dish1,category: "today",dine: ["Dine In", "Take Away"] },
-  { id: 2, name: "Hot spicy fried rice with omelette", oldPrice: 31, newPrice: 25, available: "13 Bowls available", image: dish2 ,category: "south",dine: ["Take Away"]},
-  { id: 3, name: "Spicy instant noodle with omelette", oldPrice: 42, newPrice: 32.89, available: "17 Bowls available", image: dish3,category: "today",dine: ["Dine In"] },
-  { id: 4, name: "Healthy noodle with spinach leaf", oldPrice: 32, newPrice: 25, available: "22 Bowls available", image: dish4,category: "today", dine: ["Take Away"]},
-  { id: 5, name: "Hot spicy fried rice with omelette", oldPrice: 31, newPrice: 25, available: "13 Bowls available", image: dish5 ,category: "south",dine: ["Dine In"]},
-  { id: 6, name: "Healthy noodle with spinach leaf", oldPrice: 32, newPrice: 25, available: "22 Bowls available", image: dish1,category: "today",dine: ["Take Away"] },
-  { id: 7, name: "Hot spicy fried rice with omelette", oldPrice: 31, newPrice: 25, available: "13 Bowls available", image: dish2 ,category: "today",dine: ["Dine In"]},
-  { id: 8, name: "Spicy instant noodle with omelette", oldPrice: 42, newPrice: 32.89, available: "17 Bowls available", image: dish3 ,category: "south",dine: ["Take Away"]},
-  { id: 9, name: "Healthy noodle with spinach leaf", oldPrice: 32, newPrice: 25, available: "22 Bowls available", image: dish4,category: "our", dine: ["Dine In"]},
-  { id: 10, name: "Hot spicy fried rice with omelette", oldPrice: 31, newPrice: 25, available: "13 Bowls available", image: dish5 ,category: "today",dine: ["Dine In"]},
-  { id: 11, name: "Hot spicy fried rice with omelette", oldPrice: 31, newPrice: 25, available: "13 Bowls available", image: dish2 ,category: "south",dine: ["Dine In"]},
-  { id: 12, name: "Spicy instant noodle with omelette", oldPrice: 42, newPrice: 32.89, available: "17 Bowls available", image: dish3,category: "our",dine: ["Take Away"] },
-  { id: 13, name: "Healthy noodle with spinach leaf", oldPrice: 32, newPrice: 25, available: "22 Bowls available", image: dish4,category: "today", dine: ["Dine In", "Take Away"]},
-  { id: 14, name: "Hot spicy fried rice with omelette", oldPrice: 31, newPrice: 25, available: "13 Bowls available", image: dish5 ,category: "south",dine: ["Dine In", "Take Away"]},
-  { id: 15, name: "Healthy noodle with spinach leaf", oldPrice: 32, newPrice: 25, available: "22 Bowls available", image: dish1,category: "our", dine: ["Dine In", "Take Away"]},
-  { id: 16, name: "Hot spicy fried rice with omelette", oldPrice: 31, newPrice: 25, available: "13 Bowls available", image: dish2 ,category: "today",dine: ["Dine In", "Take Away"]},
-  { id: 17, name: "Spicy instant noodle with omelette", oldPrice: 42, newPrice: 32.89, available: "17 Bowls available", image: dish3 ,category: "south",dine: ["Dine In", "Take Away"]},
-  { id: 18, name: "Healthy noodle with spinach leaf", oldPrice: 32, newPrice: 25, available: "22 Bowls available", image: dish4,category: "our",dine: ["Dine In", "Take Away"] },
-  { id: 19, name: "Hot spicy fried rice with omelette", oldPrice: 31, newPrice: 25, available: "13 Bowls available", image: dish5 ,category: "today",dine: ["Dine In", "Take Away"]},
-
+  {
+    id: 1,
+    name: "Healthy noodle with spinach leaf",
+    oldPrice: 32,
+    newPrice: 25,
+    available: "22 Bowls available",
+    image: dish1,
+    category: "today",
+    dine: ["Dine In", "Take Away"],
+  },
+  {
+    id: 2,
+    name: "Hot spicy fried rice with omelette",
+    oldPrice: 31,
+    newPrice: 25,
+    available: "13 Bowls available",
+    image: dish2,
+    category: "south",
+    dine: ["Take Away"],
+  },
+  {
+    id: 3,
+    name: "Spicy instant noodle with omelette",
+    oldPrice: 42,
+    newPrice: 32.89,
+    available: "17 Bowls available",
+    image: dish3,
+    category: "today",
+    dine: ["Dine In"],
+  },
+  {
+    id: 4,
+    name: "Healthy noodle with spinach leaf",
+    oldPrice: 32,
+    newPrice: 25,
+    available: "22 Bowls available",
+    image: dish4,
+    category: "today",
+    dine: ["Take Away"],
+  },
+  {
+    id: 5,
+    name: "Hot spicy fried rice with omelette",
+    oldPrice: 31,
+    newPrice: 25,
+    available: "13 Bowls available",
+    image: dish5,
+    category: "south",
+    dine: ["Dine In"],
+  },
+  {
+    id: 6,
+    name: "Healthy noodle with spinach leaf",
+    oldPrice: 32,
+    newPrice: 25,
+    available: "22 Bowls available",
+    image: dish1,
+    category: "today",
+    dine: ["Take Away"],
+  },
+  {
+    id: 7,
+    name: "Hot spicy fried rice with omelette",
+    oldPrice: 31,
+    newPrice: 25,
+    available: "13 Bowls available",
+    image: dish2,
+    category: "today",
+    dine: ["Dine In"],
+  },
+  {
+    id: 8,
+    name: "Spicy instant noodle with omelette",
+    oldPrice: 42,
+    newPrice: 32.89,
+    available: "17 Bowls available",
+    image: dish3,
+    category: "south",
+    dine: ["Take Away"],
+  },
+  {
+    id: 9,
+    name: "Healthy noodle with spinach leaf",
+    oldPrice: 32,
+    newPrice: 25,
+    available: "22 Bowls available",
+    image: dish4,
+    category: "our",
+    dine: ["Dine In"],
+  },
+  {
+    id: 10,
+    name: "Hot spicy fried rice with omelette",
+    oldPrice: 31,
+    newPrice: 25,
+    available: "13 Bowls available",
+    image: dish5,
+    category: "today",
+    dine: ["Dine In"],
+  },
+  {
+    id: 11,
+    name: "Hot spicy fried rice with omelette",
+    oldPrice: 31,
+    newPrice: 25,
+    available: "13 Bowls available",
+    image: dish2,
+    category: "south",
+    dine: ["Dine In"],
+  },
+  {
+    id: 12,
+    name: "Spicy instant noodle with omelette",
+    oldPrice: 42,
+    newPrice: 32.89,
+    available: "17 Bowls available",
+    image: dish3,
+    category: "our",
+    dine: ["Take Away"],
+  },
+  {
+    id: 13,
+    name: "Healthy noodle with spinach leaf",
+    oldPrice: 32,
+    newPrice: 25,
+    available: "22 Bowls available",
+    image: dish4,
+    category: "today",
+    dine: ["Dine In", "Take Away"],
+  },
+  {
+    id: 14,
+    name: "Hot spicy fried rice with omelette",
+    oldPrice: 31,
+    newPrice: 25,
+    available: "13 Bowls available",
+    image: dish5,
+    category: "south",
+    dine: ["Dine In", "Take Away"],
+  },
+  {
+    id: 15,
+    name: "Healthy noodle with spinach leaf",
+    oldPrice: 32,
+    newPrice: 25,
+    available: "22 Bowls available",
+    image: dish1,
+    category: "our",
+    dine: ["Dine In", "Take Away"],
+  },
+  {
+    id: 16,
+    name: "Hot spicy fried rice with omelette",
+    oldPrice: 31,
+    newPrice: 25,
+    available: "13 Bowls available",
+    image: dish2,
+    category: "today",
+    dine: ["Dine In", "Take Away"],
+  },
+  {
+    id: 17,
+    name: "Spicy instant noodle with omelette",
+    oldPrice: 42,
+    newPrice: 32.89,
+    available: "17 Bowls available",
+    image: dish3,
+    category: "south",
+    dine: ["Dine In", "Take Away"],
+  },
+  {
+    id: 18,
+    name: "Healthy noodle with spinach leaf",
+    oldPrice: 32,
+    newPrice: 25,
+    available: "22 Bowls available",
+    image: dish4,
+    category: "our",
+    dine: ["Dine In", "Take Away"],
+  },
+  {
+    id: 19,
+    name: "Hot spicy fried rice with omelette",
+    oldPrice: 31,
+    newPrice: 25,
+    available: "13 Bowls available",
+    image: dish5,
+    category: "today",
+    dine: ["Dine In", "Take Away"],
+  },
 ];
 
 
@@ -61,17 +230,17 @@ const Secondcompact = () => {
       return;
     }
 
-    setOrders(prev => {
-      const existing = prev.find(o => o.id === dish.id && o.size === size);
+    setOrders((prev) => {
+      const existing = prev.find((o) => o.id === dish.id && o.size === size);
       if (existing) {
-        return prev.map(o =>
+        return prev.map((o) =>
           o.id === dish.id && o.size === size ? { ...o, qty: o.qty + 1 } : o
         );
       }
       return [...prev, { ...dish, qty: 1, size }];
     });
 
-    setAddedDishes(prev => ({ ...prev, [`${dish.id}-${size}`]: true }));
+    setAddedDishes((prev) => ({ ...prev, [`${dish.id}-${size}`]: true }));
 
     setNotification("Your order successfully added!");
     setTimeout(() => setNotification(""), 2000);
@@ -83,31 +252,32 @@ const Secondcompact = () => {
   const total = subtotal * (1 - discount);
 
   const filteredDishes = dishes.filter(d =>
-  (activeCategory === "all" || d.category === activeCategory) &&
+  d.category === activeCategory &&
   d.dine.includes(dineType) &&
   d.name.toLowerCase().includes(searchQuery.toLowerCase())
 );
 
-{filteredDishes.length === 0 && (
-  <p className="text-gray-400 mt-10 text-center">
-    No dishes available for {dineType}
-  </p>
-)}
-
-
-  
+  {
+    filteredDishes.length === 0 && (
+      <p className="text-gray-400 mt-10 text-center">
+        No dishes available for {dineType}
+      </p>
+    );
+  }
 
   return (
-    <div className="bg-slate-900 min-h-screen">
-      <div className="max-w-[1600px] mx-auto flex relative pl-[72px] ">
-        <Sidebaritem/>
+    <div className="bg-[#0F0F1A] min-h-screen">
+      <div className="max-w-[1600px] mx-auto flex relative">
 
-        {/* LEFT SIDEBAR
+        {/* LEFT SIDEBAR */}
         <div className="hidden lg:flex w-22 bg-[#06060c] flex-col items-center py-6 border-r border-[#252535] relative">
           <img src={logo} alt="logo" className="w-12 h-12 mb-10" />
           <div className="flex flex-col items-center gap-6 flex-1 w-full">
-            {sidebarIcons.map(item => (
-              <div key={item.key} className="relative w-full flex justify-center">
+            {sidebarIcons.map((item) => (
+              <div
+                key={item.key}
+                className="relative w-full flex justify-center"
+              >
                 {activeIcon === item.key && (
                   <>
                     <div className="absolute -right-2 top-1/2 -translate-y-1/2 w-22 h-20 bg-[#0F0F1A] rounded-l-xl z-0" />
@@ -120,7 +290,11 @@ const Secondcompact = () => {
                 <button
                   onClick={() => setActiveIcon(item.key)}
                   className={`relative z-10 w-14 h-14 rounded-xl flex items-center justify-center transition
-                    ${activeIcon === item.key ? "bg-orange-400 shadow-xl shadow-orange-500/40" : "hover:bg-[#040413]"}`}
+                    ${
+                      activeIcon === item.key
+                        ? "bg-orange-400 shadow-xl shadow-orange-500/40"
+                        : "hover:bg-[#040413]"
+                    }`}
                 >
                   <img src={item.src} alt={item.alt} className="w-6 h-6" />
                 </button>
@@ -134,9 +308,8 @@ const Secondcompact = () => {
 
          {/* MAIN CONTENT + ORDER PANEL */}
         <div className="flex-1 flex relative transition-all duration-300">
-
           {/* MAIN CONTENT */}
-          <main className={`flex-1 p-4 sm:p-6 lg:p-8 text-white transition-all duration-300 ${showOrderPanel ? "mr-[350px]" : "mr-0"}`}>
+          <main className={`flex-1 p-4 sm:p-6 lg:p-8 text-white transition-all duration-300 ${showOrderPanel ? "mr-[3px]" : "mr-0"}`}>
 
             {/* Notification */}
             {notification && (
@@ -148,8 +321,12 @@ const Secondcompact = () => {
             {/* HEADER */}
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
-                <h1 className="text-2xl sm:text-3xl font-semibold">Chef Kitchen</h1>
-                <p className="text-gray-400 text-sm">{dateTime.toLocaleString()}</p>
+                <h1 className="text-2xl sm:text-3xl font-semibold">
+                  Chef Kitchen
+                </h1>
+                <p className="text-gray-400 text-sm">
+                  {dateTime.toLocaleString()}
+                </p>
               </div>
               <div className="flex items-center gap-4">
                 <div className="flex items-center bg-[#1A1A2D] px-4 py-2 rounded-lg border border-[#2A2A40]">
@@ -158,7 +335,7 @@ const Secondcompact = () => {
                     className="ml-2 bg-transparent text-sm outline-none text-gray-300"
                     placeholder="Search food..."
                     value={searchQuery}
-                    onChange={e => setSearchQuery(e.target.value)}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                   />
                 </div>
                 <button
@@ -178,15 +355,14 @@ const Secondcompact = () => {
             {/* CATEGORY TABS */}
             <div className="mt-6 border-b border-[#2A2A40] overflow-x-auto">
               <div className="flex gap-6 sm:gap-10 min-w-max">
-                {[{ key: "all", label: "All" },
-                  { key: "today", label: "Today Special" }, { key: "our", label: "Our Specials" }, { key: "south", label: "South Indian Special" }].map(tab => (
+                {[{ key: "today", label: "Today Special" }, { key: "our", label: "Our Specials" }, { key: "south", label: "South Indian Special" }].map(tab => (
                   <button
                     key={tab.key}
                     onClick={() => setActiveCategory(tab.key)}
-                    className={`relative pb-3 text-sm font-medium transition ${activeCategory === tab.key ? "text-[#FF9F43]" : "text-gray-400 hover:text-white"}`}
+                    className={`relative pb-3 text-sm font-medium transition ${activeCategory === tab.key ? "text-orange-400" : "text-gray-400 hover:text-white"}`}
                   >
                     {tab.label}
-                    {activeCategory === tab.key && <span className="absolute left-0 -bottom-[1px] w-full h-[2px] bg-orange-500 rounded-full" />}
+                    {activeCategory === tab.key && <span className="absolute left-0 -bottom-[1px] w-full h-[2px] bg-orange-400 rounded-full" />}
                   </button>
                 ))}
               </div>
@@ -205,9 +381,15 @@ const Secondcompact = () => {
                 </button>
                 {showDine && (
                   <div className="absolute right-0 mt-2 bg-[#1A1A2D] rounded-lg overflow-hidden">
-                    {["Dine In", "Take Away"].map(opt => (
-                      
-                      <button key={opt} onClick={() => { setDineType(opt); setShowDine(false); }} className="block px-4 py-2 text-sm hover:bg-[#24243C]">
+                    {["Dine In", "Take Away"].map((opt) => (
+                      <button
+                        key={opt}
+                        onClick={() => {
+                          setDineType(opt);
+                          setShowDine(false);
+                        }}
+                        className="block px-4 py-2 text-sm hover:bg-[#24243C]"
+                      >
                         {opt}
                       </button>
                     ))}
@@ -217,26 +399,36 @@ const Secondcompact = () => {
             </div>
 
             {/* DISH GRID */}
-<div
-  className={`mt-10 grid grid-cols-2 sm:grid-cols-2 ${showOrderPanel ? "md:grid-cols-3" : "md:grid-cols-4"} gap-6 gap-y-12 pb-28`}
->              {filteredDishes.map(dish => {
-                const sizes = ["S","M","L"];
+            <div
+              className={`mt-10 grid grid-cols-2 sm:grid-cols-2 ${
+                showOrderPanel ? "md:grid-cols-3" : "md:grid-cols-4"
+              } gap-6 gap-y-12 pb-28`}
+            >
+              {" "}
+              {filteredDishes.map((dish) => {
+                const sizes = ["S", "M", "L"];
                 return (
-                  <div key={dish.id} className="bg-slate-950 p-4 rounded-2xl">
+                  <div key={dish.id} className="bg-[#06060c] p-4 rounded-2xl">
                     <img src={dish.image} alt={dish.name} className="w-24 h-24 mx-auto -mt-14 mb-4 border-3 border-gray-950 rounded-full" />
                     <h3 className="text-sm font-semibold">{dish.name}</h3>
                     <div className="text-xs mt-1">
-                      <span className="line-through text-red-500 mr-2">{dish.oldPrice} AED</span>
-                      <span className="text-green-400 font-bold">{dish.newPrice} AED</span>
+                      <span className="line-through text-red-500 mr-2">
+                        {dish.oldPrice} AED
+                      </span>
+                      <span className="text-green-400 font-bold">
+                        {dish.newPrice} AED
+                      </span>
                     </div>
-                    <p className="text-gray-500 text-xs mt-1">{dish.available}</p>
+                    <p className="text-gray-500 text-xs mt-1">
+                      {dish.available}
+                    </p>
 
                     <div className="flex justify-center gap-2 mt-3">
-                      {sizes.map(s => (
+                      {sizes.map((s) => (
                         <button
                           key={s}
                           onClick={() => setSelectedSizes(prev => ({ ...prev, [dish.id]: s }))}
-                          className={`w-8 h-8 text-xs rounded-md ${selectedSizes[dish.id] === s ? "bg-[#FF9F43] text-black" : "bg-[#24243C] hover:bg-orange-500 hover:text-black"}`}
+                          className={`w-8 h-8 text-xs rounded-md ${selectedSizes[dish.id] === s ? "bg-orange-500 text-black" : "bg-[#24243C] hover:bg-orange-400 hover:text-black"}`}
                         >
                           {s}
                         </button>
@@ -245,9 +437,11 @@ const Secondcompact = () => {
 
                     <button
                       onClick={() => addToOrder(dish, selectedSizes[dish.id])}
-                      className={`w-full mt-4 py-2 rounded-lg text-sm transition ${addedDishes[`${dish.id}-${selectedSizes[dish.id]}`] ? "bg-green-600 text-white" : "bg-[#FF9F43] text-black hover:bg-orange-500"}`}
+                      className={`w-full mt-4 py-2 rounded-lg text-sm transition ${addedDishes[`${dish.id}-${selectedSizes[dish.id]}`] ? "bg-green-600 text-white" : "bg-orange-500 text-black hover:bg-orange-600"}`}
                     >
-                      {addedDishes[`${dish.id}-${selectedSizes[dish.id]}`] ? "Added" : "Add"}
+                      {addedDishes[`${dish.id}-${selectedSizes[dish.id]}`]
+                        ? "Added"
+                        : "Add"}
                     </button>
                   </div>
                 );
@@ -276,47 +470,49 @@ const Secondcompact = () => {
         {showReceipt && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 text-white">
             <div className="relative w-full max-w-sm sm:max-w-md bg-[#1B1B2B] rounded-2xl border border-[#2A2A3A]">
-
-              <button onClick={() => setShowReceipt(false)}
+              <button
+                onClick={() => setShowReceipt(false)}
                 className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-[#2A2A3A] text-gray-300 hover:bg-red-500 hover:text-white transition"
-              >✕</button>
+              >
+                ✕
+              </button>
 
               <div className="px-5 py-4 border-b border-[#2A2A3A] text-center">
                 <h3 className="text-[25px] font-semibold">Order Receipt</h3>
-                <p className="text-green-400 text-sm">Thank you for your order</p>
-                <p className="text-gray-400 text-xs mt-1">{dateTime.toLocaleString()}</p>
+                <p className="text-green-400 text-sm">
+                  Thank you for your order
+                </p>
+                <p className="text-gray-400 text-xs mt-1">
+                  {dateTime.toLocaleString()}
+                </p>
               </div>
 
               <div className="px-5 py-4 space-y-2 max-h-60 overflow-y-auto">
                 {orders.map((o, i) => (
-                  <div >
-                     
-                  </div>
-                  
+                  <div></div>
                 ))}
                 <div className="px-5 py-4 space-y-3 max-h-60 overflow-y-auto">
-  {orders.map((o, i) => (
-    <div
-      key={i}
-      className="text-sm border-b border-[#2A2A3A] pb-2"
-    >
-      <div className="flex justify-between">
-        <span className="text-[15px]">
-          {o.name} ({o.size}) × {o.qty}
-        </span>
-        <span>{(o.newPrice * o.qty).toFixed(2)} AED</span>
-      </div>
+                  {orders.map((o, i) => (
+                    <div
+                      key={i}
+                      className="text-sm border-b border-[#2A2A3A] pb-2"
+                    >
+                      <div className="flex justify-between">
+                        <span className="text-[15px]">
+                          {o.name} ({o.size}) × {o.qty}
+                        </span>
+                        <span>{(o.newPrice * o.qty).toFixed(2)} AED</span>
+                      </div>
 
-      {/* NOTE SHOWN HERE */}
-      {o.note && (
-        <p className="text-xs text-red-600 mt-1">
-          Note: {o.note}
-        </p>
-      )}
-    </div>
-  ))}
-</div>
-
+                      {/* NOTE SHOWN HERE */}
+                      {o.note && (
+                        <p className="text-xs text-red-600 mt-1">
+                          Note: {o.note}
+                        </p>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </div>
 
               <div className="px-5 py-4 border-t border-[#2A2A3A] text-sm space-y-2">
@@ -335,7 +531,7 @@ const Secondcompact = () => {
               </div>
               {/* DINE TYPE INFO */}
 <div className="px-5 py-2 text-center">
-  <p className="text-[#FF9F43] font-semibold text-sm">
+  <p className="text-orange-400 font-semibold text-sm">
     {dineType}
   </p>
 </div>
@@ -343,7 +539,7 @@ const Secondcompact = () => {
               <div className="px-5 py-4">
                 <button
                   onClick={() => setShowReceipt(false)}
-                  className="w-full bg-[#FF9F43] text-black py-2.5 rounded-xl font-semibold hover:bg-orange-500 transition"
+                  className="w-full bg-orange-400 text-black py-2.5 rounded-xl font-semibold hover:bg-orange-500 transition"
                 >Close</button>
               </div>
             </div>

@@ -10,7 +10,11 @@ import Notification from "./component/Notification";
 
 
 const App = () => {
-  
+
+  // TODO : Use the same font style from the figma
+  // TODO : Make the SideBar sticky only the productlist will scroll not the whole page
+  // TODO : Use the same color theme like figma 
+  // TODO : Component named would be meaning full and descriptive
   
   return (
     <Router>
