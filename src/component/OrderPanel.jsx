@@ -14,29 +14,61 @@ const panelVariants = {
   },
 };
 
-const OrderPanel = ({ orders, setOrders, onClose, onOrder }) => {
+const OrderPanel = ({
+  orders,
+  setOrders,
+  dineType,
+  setDineType,
+  onClose,
+  onOrder,
+}) => {
   const discount = 0.05;
-  const subtotal = orders.reduce((sum, o) => sum + o.newPrice * o.qty, 0);
+
+  /* ✅ FILTER ORDERS BY DINE TYPE */
+  const filteredOrders = orders.filter(
+    (o) => o.dineType === dineType
+  );
+
+  const subtotal = filteredOrders.reduce(
+    (sum, o) => sum + o.newPrice * o.qty,
+    0
+  );
+
   const total = subtotal * (1 - discount);
 
-  /* ===================== FIXED HANDLERS ===================== */
+  /* ================= HANDLERS ================= */
 
   const handleNoteChange = (id, size, value) => {
-    setOrders(prev =>
-      prev.map(o =>
-        o.id === id && o.size === size ? { ...o, note: value } : o
+    setOrders((prev) =>
+      prev.map((o) =>
+        o.id === id &&
+        o.size === size &&
+        o.dineType === dineType
+          ? { ...o, note: value }
+          : o
       )
     );
   };
 
   const handleRemove = (id, size) => {
-    setOrders(prev => prev.filter(o => !(o.id === id && o.size === size)));
+    setOrders((prev) =>
+      prev.filter(
+        (o) =>
+          !(
+            o.id === id &&
+            o.size === size &&
+            o.dineType === dineType
+          )
+      )
+    );
   };
 
   const increaseQty = (id, size) => {
-    setOrders(prev =>
-      prev.map(o =>
-        o.id === id && o.size === size
+    setOrders((prev) =>
+      prev.map((o) =>
+        o.id === id &&
+        o.size === size &&
+        o.dineType === dineType
           ? { ...o, qty: o.qty + 1 }
           : o
       )
@@ -44,16 +76,18 @@ const OrderPanel = ({ orders, setOrders, onClose, onOrder }) => {
   };
 
   const decreaseQty = (id, size) => {
-    setOrders(prev =>
-      prev.map(o =>
-        o.id === id && o.size === size
+    setOrders((prev) =>
+      prev.map((o) =>
+        o.id === id &&
+        o.size === size &&
+        o.dineType === dineType
           ? { ...o, qty: Math.max(1, o.qty - 1) }
           : o
       )
     );
   };
 
-  /* =========================================================== */
+  /* ============================================ */
 
   return (
     <AnimatePresence>
@@ -93,18 +127,23 @@ const OrderPanel = ({ orders, setOrders, onClose, onOrder }) => {
           <h2 className="text-white text-lg font-semibold mb-4">
             Orders #3456
           </h2>
-           {/* ORDER TYPE */}
-            <div className="flex flex-wrap gap-2 mb-6">
-              <button className="bg-[#FF9F43] text-black  hover:bg-orange-400  hover:text-black text-xs px-3 py-1.5 rounded-md font-medium">
-                Dine In
+
+          {/* ✅ DINE TYPE (SYNC WITH HOME) */}
+          <div className="flex flex-wrap gap-2 mb-6">
+            {["Dine In", "Take Away", "Delivery"].map((type) => (
+              <button
+                key={type}
+                onClick={() => setDineType(type)}
+                className={`text-xs px-3 py-1.5 rounded-md ${
+                  dineType === type
+                    ? "bg-[#FF9F43] text-black font-medium"
+                    : "border border-[#FF9F43] text-[#FF9F43] hover:bg-orange-400 hover:text-black"
+                }`}
+              >
+                {type}
               </button>
-              <button className="border border-[#FF9F43] text-[#FF9F43] hover:bg-orange-400  hover:text-black text-xs px-3 py-1.5 rounded-md">
-                Take away
-              </button>
-              <button className="border border-[#FF9F43] text-[#FF9F43] hover:bg-orange-400  hover:text-black text-xs px-3 py-1.5 rounded-md">
-                Delivery
-              </button>
-            </div>
+            ))}
+          </div>
 
           {/* HEADER */}
           <div className="flex justify-between text-xs text-gray-400 mb-4">
@@ -116,94 +155,112 @@ const OrderPanel = ({ orders, setOrders, onClose, onOrder }) => {
           </div>
 
           {/* ITEMS */}
-          <div className="space-y-5">
-            {orders.map(item => (
-              <div key={`${item.id}-${item.size}`}>
-                <div className="flex justify-between items-center gap-3">
-                  <div className="flex items-center gap-3 min-w-0">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-9 h-9 rounded-full"
-                    />
-                    <div className="min-w-0">
-                      <p className="text-sm text-white truncate">
-                        {item.name}
-                        <span className="text-orange-400 text-xs ml-1">
-                          ({item.size})
-                        </span>
-                      </p>
-                      <p className="text-xs text-gray-400">
-                        {item.newPrice.toFixed(2)} AED
-                      </p>
+          {filteredOrders.length === 0 ? (
+            <p className="text-gray-400 text-center mt-10">
+              No items for {dineType}
+            </p>
+          ) : (
+            <div className="space-y-5">
+              {filteredOrders.map((item) => (
+                <div key={`${item.id}-${item.size}`}>
+                  <div className="flex justify-between items-center gap-3">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="w-9 h-9 rounded-full"
+                      />
+                      <div className="min-w-0">
+                        <p className="text-sm text-white truncate">
+                          {item.name}
+                          <span className="text-orange-400 text-xs ml-1">
+                            ({item.size})
+                          </span>
+                        </p>
+                        <p className="text-xs text-gray-400">
+                          {item.newPrice.toFixed(2)} AED
+                        </p>
+                      </div>
                     </div>
+                     {/* SIZE BADGE */}
+<div className="mb-1">
+  <span className="inline-block text-[10px] px-1 py-0.50 rounded-full bg-[#FF9F43] text-black font-medium">
+    {item.size}
+  </span>
+</div>
+
+                    {/* QTY */}
+                    <div className="flex items-center gap-2 shrink-0">
+                      <button
+                        onClick={() =>
+                          decreaseQty(item.id, item.size)
+                        }
+                        className="w-6 h-6 bg-[#2A2A3A] text-white rounded"
+                      >
+                        -
+                      </button>
+                      <span className="w-6 text-center text-white">
+                        {item.qty}
+                      </span>
+                      <button
+                        onClick={() =>
+                          increaseQty(item.id, item.size)
+                        }
+                        className="w-6 h-6 bg-[#2A2A3A] text-white rounded"
+                      >
+                        +
+                      </button>
+                    </div>
+
+                    <p className="text-sm text-white w-12 text-right shrink-0">
+                      {(item.newPrice * item.qty).toFixed(2)}
+                    </p>
                   </div>
 
-                  {/* QTY */}
-                  <div className="flex items-center gap-2 shrink-0">
+                 
+
+                  {/* NOTE + DELETE */}
+                  <div className="flex gap-3 mt-3">
+                    <input
+                      value={item.note || ""}
+                      onChange={(e) =>
+                        handleNoteChange(
+                          item.id,
+                          item.size,
+                          e.target.value
+                        )
+                      }
+                      placeholder="Order Note..."
+                      className="
+                        flex-1
+                        bg-[#2A2A3A]
+                        text-xs text-gray-300
+                        px-3 py-2
+                        rounded-md
+                        outline-none
+                      "
+                    />
                     <button
-                      onClick={() => decreaseQty(item.id, item.size)}
-                      className="w-6 h-6 bg-[#2A2A3A] text-white rounded"
+                      onClick={() =>
+                        handleRemove(item.id, item.size)
+                      }
+                      className="
+                        w-9 h-9
+                        border border-orange-400
+                        rounded-md
+                        flex items-center justify-center
+                        text-[#FF9F43]
+                        hover:bg-orange-400 hover:text-black
+                        transition
+                      "
                     >
-                      -
-                    </button>
-                    <span className="w-6 text-center text-white">
-                      {item.qty}
-                    </span>
-                    <button
-                      onClick={() => increaseQty(item.id, item.size)}
-                      className="w-6 h-6 bg-[#2A2A3A] text-white rounded"
-                    >
-                      +
+                      <Trash2 size={16} />
                     </button>
                   </div>
-
-                  <p className="text-sm text-white w-12 text-right shrink-0">
-                    {(item.newPrice * item.qty).toFixed(2)}
-                  </p>
                 </div>
-
-                {/* NOTE + DELETE */}
-                <div className="flex gap-3 mt-3">
-                  <input
-                    value={item.note || ""}
-                    onChange={e =>
-                      handleNoteChange(
-                        item.id,
-                        item.size,
-                        e.target.value
-                      )
-                    }
-                    placeholder="Order Note..."
-                    className="
-                      flex-1
-                      bg-[#2A2A3A]
-                      text-xs text-gray-300
-                      px-3 py-2
-                      rounded-md
-                      outline-none
-                    "
-                  />
-                  <button
-                    onClick={() =>
-                      handleRemove(item.id, item.size)
-                    }
-                    className="
-                      w-9 h-9
-                      border border-orange-400
-                      rounded-md
-                      flex items-center justify-center
-                      text-[#FF9F43]
-                      hover:bg-orange-400 hover:text-black
-                      transition
-                    "
-                  >
-                    <Trash2 size={16} />
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* SUMMARY */}
@@ -226,7 +283,7 @@ const OrderPanel = ({ orders, setOrders, onClose, onOrder }) => {
               shadow-xl shadow-orange-500/40
               hover:bg-orange-300
               transition
-              text-black
+              text-white
               font-semibold
               py-3
               rounded-lg

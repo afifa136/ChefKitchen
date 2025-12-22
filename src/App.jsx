@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Firstcompact from "./component/Firstcompact";
-import Secondcompact from "./component/Secondcompact";
 import Offers from "./component/Offers";
 import Favorate from "./component/Favorate";
 import Mail from "./component/Mail";
 import Notification from "./component/Notification";
+import LandingPage from "./component/LandingPage";
+import Home from "./component/Home";
 
 
 
@@ -19,8 +19,8 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Firstcompact />} />
-        <Route path="/menu" element={<Secondcompact />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/menu" element={<Home />} />
         <Route path="/offers" element={<Offers/>} />
         <Route path="/likes" element={<Favorate/>} />
         <Route path="/profile" element={<Mail/>} />

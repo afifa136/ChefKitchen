@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .no-scrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
@@ -18,4 +20,70 @@
 }
 html, body {
   overflow-x: hidden;
+}
+@layer base {
+  body {
+    @apply font-barlow;
+  }
+}
+/* ==============================
+   RESPONSIVE SIDEBAR + LAYOUT
+================================ */
+
+/* Sidebar default (desktop) */
+.sidebar {
+  width: 72px;
+  flex-shrink: 0;
+}
+
+/* Main layout default */
+.main-layout {
+  padding-left: 72px;
+}
+
+/* Header default offset (desktop) */
+.header-offset {
+  left: 72px;
+}
+
+/* ==============================
+   MOBILE / TABLET
+================================ */
+@media (max-width: 1024px) {
+  /* Hide sidebar */
+  .sidebar {
+    display: none !important;
+  }
+
+  /* Remove left padding */
+  .main-layout {
+    padding-left: 0 !important;
+  }
+
+  /* Header full width */
+  .header-offset {
+    left: 0 !important;
+  }
+}
+/* ==============================
+   FIX FIXED HEADER OVERLAP
+================================ */
+
+/* Main content wrapper */
+.main-layout main {
+  padding-top: 90px; /* desktop header height */
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .main-layout main {
+    padding-top: 90px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .main-layout main {
+    padding-top: 180px;
+  }
 }

@@ -5,7 +5,7 @@ import background from "../assets/background.png";
 import foodbg from "../assets/foodbg.png";
 import cooking from "../assets/cooking.svg";
 
-const Firstcompact = () => {
+const LandingPage = () => {
   const navigate = useNavigate(); // ✅ navigation hook
 
   return (
@@ -38,11 +38,11 @@ const Firstcompact = () => {
         </div>
 
         {/* Text section */}
-        <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-extrabold text-white mt-4 sm:mt-6 md:mt-8 leading-tight font-serif">
+        <h1 className="text-lg sm:text-2xl md:text-4xl lg:text-5xl  text-white mt-4 sm:mt-6 md:mt-8 leading-tight ">
           Welcome to Chef Kitchen
         </h1>
 
-        <p className="text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg mt-1 sm:mt-2 md:mt-3 max-w-[180px] sm:max-w-xs md:max-w-md leading-relaxed font-serif">
+        <p className="text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg mt-1 sm:mt-2 md:mt-3 max-w-[180px] sm:max-w-xs md:max-w-md leading-relaxed ">
           Check out the awesome food experience! It’s super fresh, quick, and oh-so tasty.
         </p>
 
@@ -58,4 +58,4 @@ const Firstcompact = () => {
   );
 };
 
-export default Firstcompact;
+export default LandingPage;
